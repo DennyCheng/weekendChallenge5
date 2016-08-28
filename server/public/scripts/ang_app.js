@@ -23,17 +23,24 @@ myApp.config(["$routeProvider", function($routeProvider){
       controller: "homeController"
     }).
     otherwise({
-      redirectTo: "/cats"
+      redirectTo: "/home"
     });
 
 }]);
 
-myApp.controller("globalController", ["$scope", "$http", function($scope, $http) {
+myApp.controller("globalController", ["$scope", "$http","$location", function($scope, $http, $location) {
 $scope.favPetCounter = 0;
+$scope.currentPage = 'home';
+$scope.go = function go(page) {
+  console.log(page);
+  $location.path("/"+page);
+//This some works, don't ask questions. Thanks :)
+};
 }]);
 
 myApp.controller("catController", ["$scope", "$http", function($scope, $http) {
-  console.log("working")
+
+  console.log("Cat controller working")
   var key = 'b900e0d5e332753a460a64eaa8de00fd';
   var baseURL = 'http://api.petfinder.com/';
 
@@ -88,8 +95,10 @@ myApp.controller("catController", ["$scope", "$http", function($scope, $http) {
 
 
   myApp.controller("dogController", ["$scope", "$http", function($scope, $http) {
+    console.log("working")
     var key = 'b900e0d5e332753a460a64eaa8de00fd';
     var baseURL = 'http://api.petfinder.com/';
+
 
       var query = baseURL + 'pet.getRandom';
       query += '?key=' + key;
@@ -102,31 +111,91 @@ myApp.controller("catController", ["$scope", "$http", function($scope, $http) {
       var request = encodeURI(query) + '&callback=JSON_CALLBACK';
 
       $http.jsonp(request).then(function(response) {
+        console.log(response.data);
         $scope.dog = response.data.petfinder.pet;
 
       });
-
+      $scope.petFavorite = function(name,description,photo){
+        console.log("name",name)
+        console.log("description",description)
+        console.log("photo",photo)
+        if (name == undefined){
+          name = "unknown"
+        }
+        if(description == undefined){
+          description = "No description"
+        }
+        if(photo == undefined){
+          photo ="No photo"
+        }
+        var pet = {
+          name: name,
+          description:description.substring(0,100),
+          photo:photo,
+        };
+        console.log(pet)
+        $http({
+          method: 'POST',
+          url: '/pets',
+          data:pet,
+        }).then(function (response) {
+          $scope.favPetCounter + 1;
+          $scope.orders2 = response.data;
+          // console.log($scope.orders2);
+        });
+      };
   }]);
 
     myApp.controller("smallController", ["$scope", "$http", function($scope, $http) {
-      var key = 'b900e0d5e332753a460a64eaa8de00fd';
-      var baseURL = 'http://api.petfinder.com/';
+        console.log("small working")
+        var key = 'b900e0d5e332753a460a64eaa8de00fd';
+        var baseURL = 'http://api.petfinder.com/';
 
 
-        var query = baseURL + 'pet.getRandom';
-        query += '?key=' + key;
-        query += '&animal=smallfurry';
-        query += '&output=basic';
-        query += '&format=json';
+          var query = baseURL + 'pet.getRandom';
+          query += '?key=' + key;
+          query += '&animal=smallfurry';
+          query += '&output=basic';
+          query += '&format=json';
 
-        console.log('query: ', query);
+          console.log('query: ', query);
 
-        var request = encodeURI(query) + '&callback=JSON_CALLBACK';
+          var request = encodeURI(query) + '&callback=JSON_CALLBACK';
 
-        $http.jsonp(request).then(function(response) {
-          $scope.small = response.data.petfinder.pet;
+          $http.jsonp(request).then(function(response) {
+            console.log(response.data);
+            $scope.small = response.data.petfinder.pet;
 
-        });
+          });
+          $scope.petFavorite = function(name,description,photo){
+            console.log("name",name)
+            console.log("description",description)
+            console.log("photo",photo)
+            if (name == undefined){
+              name = "unknown"
+            }
+            if(description == undefined){
+              description = "No description"
+            }
+            if(photo == undefined){
+              photo ="No photo"
+            }
+            var pet = {
+              name: name,
+              description:description.substring(0,100),
+              photo:photo,
+            };
+            console.log(pet)
+            $http({
+              method: 'POST',
+              url: '/pets',
+              data:pet,
+            }).then(function (response) {
+              $scope.favPetCounter + 1;
+              $scope.orders2 = response.data;
+              // console.log($scope.orders2);
+            });
+          };
 
 
 }]);

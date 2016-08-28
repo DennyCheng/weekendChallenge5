@@ -13,8 +13,16 @@
 </head>
 <body ng-app="myApp">
   <div ng-controller="globalController">
-  <p>{{favPetCounter}}</p>
     <h1>Pet Finder!</h1>
+    <select id="naver" name="naver" ng-model="currentPage" ng-change="go(currentPage)">
+      
+      <option value="cats">Cats</option>
+      <option value="dogs">Dogs</option>
+      <option value="smallfurry">Small Furries</option>
+    </select>
+
+
+  </div>
     <div>
       <a href="#cats">Cats</a>
       <a href="#smallfurry">Small Furries</a>
