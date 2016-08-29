@@ -1,11 +1,11 @@
-<div class="container" ng-controller="smallController">
-  <div class="col-md-6">
-  </div>
-  <div class="col-md-6">
+<div class="row" ng-controller="smallController">
+  <div class="col-md-2">
     <h2>{{small.name.$t}}</h2>
     <p>{{small.description.$t}}</p>
+  </div>
+  <div class="col-md-2">
+    <button ng-click="petFavorite(small.name.$t,small.description.$t,small.media.photos.photo[2].$t)">Favorite Me</button>
     <img ng-src="{{small.media.photos.photo[2].$t}}" />
   </div>
-  <button ng-click="petFavorite(small.name.$t,small.description.$t,small.media.photos.photo[2].$t)">Favorite Me</button>
-</div>
+
 </div>

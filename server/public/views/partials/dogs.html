@@ -1,10 +1,11 @@
-<div class="container" ng-controller="catController">
-  <div class="col-md-6">
-  </div>
-  <div class="col-md-6">
+<div class="row" ng-controller="dogController">
+  <div class="col-md-2">
     <h2>{{dog.name.$t}}</h2>
     <p>{{dog.description.$t}}</p>
-    <img ng-src="{{dog.media.photos.photo[2].$t}}"/>
   </div>
-  <button ng-click="petFavorite(dog.name.$t,dog.description.$t,dog.media.photos.photo[2].$t)">Favorite Me</button>
+  <div class="col-md-2">
+    <button ng-click="petFavorite(dog.name.$t,dog.description.$t,dog.media.photos.photo[2].$t)">Favorite Me</button>
+    <img ng-src="{{dog.media.photos.photo[2].$t}}" />
+  </div>
+
 </div>

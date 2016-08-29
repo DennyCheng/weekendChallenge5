@@ -1,0 +1,11 @@
+<div class="row" ng-controller="horseController">
+  <div class="col-md-2">
+    <h2>{{horse.name.$t}}</h2>
+    <p>{{horse.description.$t}}</p>
+  </div>
+  <div class="col-md-2">
+    <button ng-click="petFavorite(horse.name.$t,horse.description.$t,horse.media.photos.photo[2].$t)">Favorite Me</button>
+    <img ng-src="{{horse.media.photos.photo[2].$t}}" />
+  </div>
+
+</div>

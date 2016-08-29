@@ -12,24 +12,26 @@
     <script type="text/javascript" src="/scripts/ang_app.js"></script>
 </head>
 <body ng-app="myApp">
-  <div ng-controller="globalController">
-    <h1>Pet Finder!</h1>
-    <select id="naver" name="naver" ng-model="currentPage" ng-change="go(currentPage)">
-      
+  <div ng-controller="globalController" class = "row">
+    <h1 class="jumbotron text-center ">Pet Finder!</h1>
+
+    <div class="col-xs-6 col-md-4"></div>
+
+    <select class="col-xs-6 col-md-4"  id="naver" name="naver" ng-model="currentPage" ng-change="go(currentPage)">
       <option value="cats">Cats</option>
       <option value="dogs">Dogs</option>
       <option value="smallfurry">Small Furries</option>
+      <option value="barnyard">Barn Yard Animals</option>
+      <option value="bird">Birds</option>
+      <option value="horse">Horses</option>
+      <option value="pig">Pigs</option>
+      <option value="reptile">Reptiles</option>
     </select>
-
-
+    <a href="#favorites">Favorites</a>
+    <a href="#home">Home</a>
   </div>
-    <div>
-      <a href="#cats">Cats</a>
-      <a href="#smallfurry">Small Furries</a>
-      <a href="#dogs">Dogs</a>
-      <a href="#favorites">Favorites</a>
-      <a href="#home">Home</a>
-    </div>
+    <div class="col-xs-6 col-md-4"></div>
+
     <main ng-view>
     </main>
   </div>

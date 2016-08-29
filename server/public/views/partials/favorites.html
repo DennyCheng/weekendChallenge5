@@ -1,5 +1,6 @@
 <div>
       <h1>Favorite Pets List</h1>
+      <h2>{{favPetNumber}}</h2>
       <ul ng-repeat="pet in favPets">
         <img src="{{pet.image}}" alt="Cat Picture" style="width:128px;height:128px;"/>
         <li>{{pet.name + " " + pet.description}} </li>
