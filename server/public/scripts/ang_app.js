@@ -72,10 +72,7 @@ myApp.controller("favoritesController", ["$scope", "$http", function($scope, $ht
     url: '/pets',
   }).then(function (response) {
     $scope.favPets = response.data;
-  });
-
-  $scope.
-
+  })
 }]);
 myApp.controller("homeController", ["$scope", "$http", function($scope, $http) {
   console.log("home controller")
